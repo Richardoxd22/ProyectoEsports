@@ -28,3 +28,6 @@ Route::get('/noticias/{id}/confirmDelete', [noticiasController::class, 'confirmD
 
 Route::resource('/comentarios', comentariosController::class);
 Route::get('/comentarios/{id}/confirmDelete', [comentariosController::class, 'confirmDelete']);
+
+Route::resource('/eventos', eventosController::class);
+Route::get('/eventos/{id}/confirmDelete', [eventosController::class, 'confirmDelete']);

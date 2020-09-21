@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class eventos extends Model
+{
+    use HasFactory;
+    protected $table = 'eventos';
+    protected $fillable = ['id_eventos', 'tituloevento', 'juegotorneo', 'informaciontorneo', 'discord','id'];
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+    protected $keyType = 'int';
+    public $timestamps = false;
+}
+
