@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\comentarios;
 use Illuminate\Http\Request;
 
 class comentariosController extends Controller
@@ -13,7 +14,9 @@ class comentariosController extends Controller
      */
     public function index()
     {
-        //
+        return view('comentarios.index', [
+            'comentarios' => comentarios::all()
+        ]);
     }
 
     /**
@@ -23,7 +26,7 @@ class comentariosController extends Controller
      */
     public function create()
     {
-        //
+        return view('comentarios.create');
     }
 
     /**
@@ -34,7 +37,8 @@ class comentariosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        comentarios::create($request->all())->save();
+        return redirect('/comentarios');
     }
 
     /**
@@ -43,9 +47,11 @@ class comentariosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id_comentarios)
     {
-        //
+        return view('comentarios.show', [
+            'comentarios' => comentarios::findOrFail($id_comentarios),
+        ]);
     }
 
     /**
@@ -56,7 +62,10 @@ class comentariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comentario = comentarios::findOrFail($id);
+        return view('comentarios.edit', [
+            'comentarios' => $comentario,
+        ]);
     }
 
     /**
@@ -68,7 +77,14 @@ class comentariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $comentario = comentarios::findOrFail($id);
+        $comentario->id_comentarios = $request->get('id_comentarios');
+        $comentario->id = $request->get('id');
+        $comentario->fecha = $request->get('fecha');
+        $comentario->comentario = $request->get('comentario');        
+        $comentario->save();
+
+        return redirect('/comentarios');
     }
 
     /**
@@ -79,6 +95,16 @@ class comentariosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comentario = comentarios::findOrFail($id);
+        $comentario->delete();
+
+        return redirect('/comentarios');
+    }
+    public function confirmDelete($id)
+    {
+        $comentario = comentarios::findOrFail($id);
+        return view('comentarios.confirmDelete', [
+            'comentarios' => $comentario,
+        ]);
     }
 }

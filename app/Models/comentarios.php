@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class comentarios extends Model
 {
     use HasFactory;
+    protected $table = 'comentarios';
+    protected $fillable = ['id_comentarios','id' ,'fecha', 'comentario'];
+    protected $primaryKey = 'id_comentarios';
+    public $incrementing = false;
+    protected $keyType = 'int';
+    public $timestamps = false;
 }
