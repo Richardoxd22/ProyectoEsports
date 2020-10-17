@@ -84,7 +84,6 @@ class UsuariosController extends Controller
         $usuario->telefono = $request->get('telefono');
         $usuario->fecha_de_nacimiento = $request->get('fecha_de_nacimiento');
         $usuario->contrasena = $request->get('contrasena');
-        $usuario->admin = $request->get('admin');
         $usuario->save();
 
         return redirect('/usuarios');
