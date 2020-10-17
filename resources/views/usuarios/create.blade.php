@@ -34,7 +34,7 @@
                         <label for="fecha_de_nacimiento">Fecha de nacimiento:</label>
                         <input type="text" class="form-control" name="fecha_de_nacimiento" id="fecha_de_nacimiento" placeholder="Escribe un fecha_de_nacimiento" value="{{old('fecha_de_nacimiento')}}">   
                         <label for="contrasena">Contraseña:</label>
-                        <input type="text" class="form-control" name="contrasena" id="contrasena" placeholder="Escribe un contrasena" value="{{old('contrasena')}}">               
+                        <input type="text" class="form-control" name="contrasena" id="contrasena" placeholder="Escribe un contrasena" value="{{old('contrasena')}}">                                       
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 

@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::resource('/usuarios', UsuariosController::class);
 Route::get('/usuarios/{id}/confirmDelete', [UsuariosController::class, 'confirmDelete']);
 
@@ -31,3 +32,9 @@ Route::get('/comentarios/{id}/confirmDelete', [comentariosController::class, 'co
 
 Route::resource('/eventos', eventosController::class);
 Route::get('/eventos/{id}/confirmDelete', [eventosController::class, 'confirmDelete']);
+
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
