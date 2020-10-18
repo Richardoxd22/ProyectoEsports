@@ -12,6 +12,10 @@ class eventosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return view('eventos.index', [
@@ -100,13 +104,15 @@ class eventosController extends Controller
         $eventos = eventos::findOrFail($id);
         $eventos->delete();
 
-        return redirect('/eventos');
+        return redirect('/eventos');        
     }
     public function confirmDelete($id)
     {
+        
         $eventos = eventos::findOrFail($id);
         return view('eventos.confirmDelete', [
             'eventos' => $eventos,
         ]);
+
     }
 }

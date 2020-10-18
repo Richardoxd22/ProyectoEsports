@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="col">
-        <h1>Borrar Evento {{$eventos->tituloevento}}</h1>
+        <h1><p style="color:#FF0000";>Para poder borrar el evento "{{$eventos->tituloevento}}"</h1></p> 
+        <h2><p style="color:#191970";> Contactarse con: Christian Chavez N° 0979098791 o Richard Santillán N° 0984004786</h2></p>
+    <body> 
+  
     </div>
     <div class="row">
         <div class="col">
@@ -14,7 +17,7 @@
                 <form action="/eventos/{{$eventos->id_eventos}}" method="POST">
                     @csrf
                     @method('delete')                   
-                    <button type="submit" class="btn btn-primary">Borrar</button>                
+                                   
                 </form>
             </div>
         </div>            
