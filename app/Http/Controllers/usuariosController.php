@@ -12,6 +12,10 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         return view('usuarios.index', [
@@ -84,7 +88,7 @@ class UsuariosController extends Controller
         $usuario->telefono = $request->get('telefono');
         $usuario->fecha_de_nacimiento = $request->get('fecha_de_nacimiento');
         $usuario->contrasena = $request->get('contrasena');
-        $usuario->admin = $request->get('admin');
+
         $usuario->save();
 
         return redirect('/usuarios');
