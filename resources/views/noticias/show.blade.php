@@ -6,12 +6,12 @@
     </div>
     <div class="row">
         <div class="col">
-            <a class="btn btn-secondary" href="/noticias">Back</a>
+            <a class="btn btn-secondary" href="/noticias">Back</a>            
         </div>
     </div>
 
         <div class="row">
-            <h3>Detalles</h3>
+            <h3>Detalles</h3>     
             <table class="table">
                 <tr>
                     <td>{{$noticias->titulonoticia}}</td>
@@ -22,6 +22,9 @@
                 </tr>
             </table>
         </div>
+    </div>
+    <div class="row justify-content-center">
+    <a class="btn btn-primary" href="/comentarios/create">comentar</a>
     </div>
         
     

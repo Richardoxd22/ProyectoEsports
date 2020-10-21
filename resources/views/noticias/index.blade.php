@@ -18,7 +18,8 @@
 <div class="container">
     <div class="col">
         <h1>Noticias</h1>
-        <a class="btn btn-primary" href="/eventos">Eventos</a><a class="btn btn-primary" href="/comentarios">comentarios</a>
+        <a class="btn btn-primary" href="/eventos">Eventos</a>
+        <!-- <a class="btn btn-primary" href="/comentarios">comentarios</a> -->
     </div>
     <div class="row">
         <div class="col">
