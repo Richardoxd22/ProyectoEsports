@@ -12,15 +12,10 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
-        return view('usuarios.index', [
-            'usuarios' => Usuario::all()
-        ]);
+        return json_encode(Usuario::all());
     }
 
     /**
@@ -42,7 +37,7 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
         Usuario::create($request->all())->save();
-        return redirect('/usuarios');
+        return json_encode($request->all());
     }
 
     /**
@@ -53,9 +48,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        return view('usuarios.show', [
-            'usuario' => Usuario::findOrFail($id),
-        ]);
+        return json_encode(Usuario::findOrFail($id));
     }
 
     /**
@@ -82,7 +75,6 @@ class UsuariosController extends Controller
     public function update(Request $request, $id)
     {
         $usuario = Usuario::findOrFail($id);
-        $usuario->id = $request->get('id');
         $usuario->nombre = $request->get('nombre');
         $usuario->correo_electronico = $request->get('correo_electronico');
         $usuario->telefono = $request->get('telefono');
@@ -91,7 +83,7 @@ class UsuariosController extends Controller
 
         $usuario->save();
 
-        return redirect('/usuarios');
+        return json_encode($usuario);
     }
 
     /**
@@ -105,7 +97,8 @@ class UsuariosController extends Controller
         $usuario = Usuario::findOrFail($id);
         $usuario->delete();
 
-        return redirect('/usuarios');
+        return response('Success Delete', 200)
+            ->header('Content-Type', 'text/plain');
     }
     public function confirmDelete($id)
     {

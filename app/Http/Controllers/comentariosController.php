@@ -12,15 +12,10 @@ class comentariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
-        return view('comentarios.index', [
-            'comentarios' => comentarios::all()
-        ]);
+        return json_encode(comentarios::all());
     }
 
     /**
@@ -42,7 +37,7 @@ class comentariosController extends Controller
     public function store(Request $request)
     {
         comentarios::create($request->all())->save();
-        return redirect('/comentarios');
+        return json_encode($request->all());
     }
 
     /**
@@ -53,9 +48,7 @@ class comentariosController extends Controller
      */
     public function show($id_comentarios)
     {
-        return view('comentarios.show', [
-            'comentarios' => comentarios::findOrFail($id_comentarios),
-        ]);
+        return json_encode(comentarios::findOrFail($id_comentarios));
     }
 
     /**
@@ -82,13 +75,12 @@ class comentariosController extends Controller
     public function update(Request $request, $id)
     {
         $comentario = comentarios::findOrFail($id);
-        $comentario->id_comentarios = $request->get('id_comentarios');
         $comentario->id = $request->get('id');
         $comentario->fecha = $request->get('fecha');
-        $comentario->comentario = $request->get('comentario');        
+        $comentario->comentario = $request->get('comentario');
         $comentario->save();
 
-        return redirect('/comentarios');
+        return json_encode($comentario);
     }
 
     /**
@@ -102,7 +94,8 @@ class comentariosController extends Controller
         $comentario = comentarios::findOrFail($id);
         $comentario->delete();
 
-        return redirect('/comentarios');
+        return response('Success Delete', 200)
+            ->header('Content-Type', 'text/plain');
     }
     public function confirmDelete($id)
     {

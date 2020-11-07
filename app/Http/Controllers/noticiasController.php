@@ -14,9 +14,7 @@ class noticiasController extends Controller
      */
     public function index()
     {
-        return view('noticias.index', [
-            'noticias' => noticias::all()
-        ]);
+        return json_encode(noticias::all());
     }
 
     /**
@@ -38,7 +36,7 @@ class noticiasController extends Controller
     public function store(Request $request)
     {
         noticias::create($request->all())->save();
-        return redirect('/noticias');
+        return json_encode($request->all());
     }
 
     /**
@@ -49,9 +47,7 @@ class noticiasController extends Controller
      */
     public function show($id)
     {
-        return view('noticias.show', [
-            'noticias' => noticias::findOrFail($id),
-        ]);
+        return json_encode(noticias::findOrFail($id));
     }
 
     /**
@@ -81,11 +77,10 @@ class noticiasController extends Controller
         $noticia->titulonoticia = $request->get('titulonoticia');
         $noticia->juego = $request->get('juego');
         $noticia->informacion = $request->get('informacion');
-        $noticia->id_noticia = $request->get('id_noticia');
-        $noticia->id = $request->get('id');        
+        $noticia->id = $request->get('id');
         $noticia->save();
 
-        return redirect('/noticias');
+        return json_encode($noticia);
     }
 
     /**
@@ -99,7 +94,9 @@ class noticiasController extends Controller
         $noticia = noticias::findOrFail($id);
         $noticia->delete();
 
-        return redirect('/noticias');
+        return
+            response('Success Delete', 200)
+            ->header('Content-Type', 'text/plain');
     }
     public function confirmDelete($id)
     {

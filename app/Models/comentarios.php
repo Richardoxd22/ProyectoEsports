@@ -9,7 +9,7 @@ class comentarios extends Model
 {
     use HasFactory;
     protected $table = 'comentarios';
-    protected $fillable = ['id_comentarios','id' ,'fecha', 'comentario'];
+    protected $fillable = ['id_comentarios', 'id', 'id_noticia', 'fecha', 'comentario', 'rating'];
     protected $primaryKey = 'id_comentarios';
     public $incrementing = false;
     protected $keyType = 'int';

@@ -9,10 +9,9 @@ class eventos extends Model
 {
     use HasFactory;
     protected $table = 'eventos';
-    protected $fillable = ['id_eventos', 'tituloevento', 'juegotorneo', 'informaciontorneo', 'discord','id'];
-    protected $primaryKey = 'id';
+    protected $fillable = ['id_eventos', 'tituloevento', 'juegotorneo', 'informaciontorneo', 'discord', 'id'];
+    protected $primaryKey = 'id_eventos';
     public $incrementing = false;
     protected $keyType = 'int';
     public $timestamps = false;
 }
-

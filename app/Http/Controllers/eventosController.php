@@ -12,15 +12,10 @@ class eventosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
     public function index()
     {
-        return view('eventos.index', [
-            'eventos' => eventos::all()
-        ]);
+        return json_encode(eventos::all());
     }
 
     /**
@@ -42,7 +37,7 @@ class eventosController extends Controller
     public function store(Request $request)
     {
         eventos::create($request->all())->save();
-        return redirect('/eventos');
+        return json_encode($request->all());
     }
 
     /**
@@ -53,9 +48,7 @@ class eventosController extends Controller
      */
     public function show($id_eventos)
     {
-        return view('eventos.show', [
-            'eventos' => eventos::findOrFail($id_eventos),
-        ]);
+        return eventos::findOrFail($id_eventos);
     }
 
     /**
@@ -82,15 +75,15 @@ class eventosController extends Controller
     public function update(Request $request, $id)
     {
         $eventos = eventos::findOrFail($id);
-        $eventos->id_eventos = $request->get('id_eventos');
-        $eventos->tituloevento = $request->get('titutloevento');
+
+        $eventos->tituloevento = $request->get('tituloevento');
         $eventos->juegotorneo = $request->get('juegotorneo');
         $eventos->informaciontorneo = $request->get('informaciontorneo');
         $eventos->discord = $request->get('discord');
         $eventos->id = $request->get('id');
         $eventos->save();
 
-        return redirect('/eventos');
+        return json_encode($eventos);
     }
 
     /**
@@ -104,15 +97,16 @@ class eventosController extends Controller
         $eventos = eventos::findOrFail($id);
         $eventos->delete();
 
-        return redirect('/eventos');        
+        return
+            response('Success Delete', 200)
+            ->header('Content-Type', 'text/plain');
     }
     public function confirmDelete($id)
     {
-        
+
         $eventos = eventos::findOrFail($id);
         return view('eventos.confirmDelete', [
             'eventos' => $eventos,
         ]);
-
     }
 }
