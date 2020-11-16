@@ -26,7 +26,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('/eventos', eventosController::class);
 
-Route::resource('/usuarios', UsuariosController::class);
+Route::resource('/usuarios', usuariosController::class);
 
 Route::resource('/noticias', noticiasController::class);
 
