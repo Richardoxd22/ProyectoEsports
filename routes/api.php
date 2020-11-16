@@ -4,6 +4,7 @@ use App\Http\Controllers\comentariosController;
 use App\Http\Controllers\CustomQueries;
 use App\Http\Controllers\eventosController;
 use App\Http\Controllers\noticiasController;
+use App\Http\Controllers\usuario2Controller;
 use App\Http\Controllers\UsuariosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('/eventos', eventosController::class);
 
-Route::resource('/usuarios', UsuariosController::class);
+Route::resource('/usuarios', usuario2Controller::class);
 
 Route::resource('/noticias', noticiasController::class);
 
