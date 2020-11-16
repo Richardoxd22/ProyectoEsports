@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\comentariosController;
+use App\Http\Controllers\CustomQueries;
 use App\Http\Controllers\eventosController;
 use App\Http\Controllers\noticiasController;
 use App\Http\Controllers\UsuariosController;
@@ -30,3 +31,13 @@ Route::resource('/usuarios', UsuariosController::class);
 Route::resource('/noticias', noticiasController::class);
 
 Route::resource('/comentarios', comentariosController::class);
+
+//Custom queries
+
+Route::get('/customqueries/noticias', [CustomQueries::class, 'Paginado']);
+
+Route::get('/customqueries/eventos', [CustomQueries::class, 'Eventos']);
+
+Route::get('/customqueries/recomendaciones', [CustomQueries::class, 'Recomendaciones']);
+
+Route::get('/customqueries/comentarios/{idNoticia}', [CustomQueries::class, 'Comentarios']);

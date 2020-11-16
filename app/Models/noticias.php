@@ -9,7 +9,7 @@ class noticias extends Model
 {
     use HasFactory;
     protected $table = 'noticias';
-    protected $fillable = ['titulonoticia', 'juego', 'informacion', 'id_noticia', 'id'];
+    protected $fillable = ['titulonoticia', 'juego', 'informacion', 'id_noticia', 'auth', 'imagen'];
     protected $primaryKey = 'id_noticia';
     public $incrementing = false;
     protected $keyType = 'int';

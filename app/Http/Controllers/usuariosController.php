@@ -48,7 +48,7 @@ class UsuariosController extends Controller
      */
     public function show($id)
     {
-        return json_encode(Usuario::findOrFail($id));
+        return json_encode(Usuario::find($id));
     }
 
     /**
