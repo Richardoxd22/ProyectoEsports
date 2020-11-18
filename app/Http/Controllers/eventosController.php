@@ -81,6 +81,8 @@ class eventosController extends Controller
         $eventos->informaciontorneo = $request->get('informaciontorneo');
         $eventos->discord = $request->get('discord');
         $eventos->id = $request->get('id');
+        $eventos->eventofecha = $request->get('eventofecha');
+        $eventos->eventoimagen = $request->get('eventoimagen');
         $eventos->save();
 
         return json_encode($eventos);
