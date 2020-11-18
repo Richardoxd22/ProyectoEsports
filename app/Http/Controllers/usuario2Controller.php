@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\eventos;
+use App\Models\usuario2;
 use Illuminate\Http\Request;
 
-class eventosController extends Controller
+class usuario2Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return json_encode(eventos::all());
+        return json_encode(usuario2::all());
     }
 
     /**
@@ -25,7 +24,7 @@ class eventosController extends Controller
      */
     public function create()
     {
-        return view('eventos.create');
+        //
     }
 
     /**
@@ -36,7 +35,7 @@ class eventosController extends Controller
      */
     public function store(Request $request)
     {
-        eventos::create($request->all())->save();
+        usuario2::create($request->all())->save();
         return json_encode($request->all());
     }
 
@@ -46,9 +45,9 @@ class eventosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_eventos)
+    public function show($id)
     {
-        return eventos::findOrFail($id_eventos);
+        return json_encode(usuario2::find($id));
     }
 
     /**
@@ -59,10 +58,7 @@ class eventosController extends Controller
      */
     public function edit($id)
     {
-        $eventos = eventos::findOrFail($id);
-        return view('eventos.edit', [
-            'eventos' => $eventos,
-        ]);
+        //
     }
 
     /**
@@ -74,18 +70,16 @@ class eventosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $eventos = eventos::findOrFail($id);
+        $usuario = usuario2::findOrFail($id);
+        $usuario->nombre = $request->get('nombre');
+        $usuario->correo_electronico = $request->get('correo_electronico');
+        $usuario->telefono = $request->get('telefono');
+        $usuario->fecha_de_nacimiento = $request->get('fecha_de_nacimiento');
+        $usuario->contrasena = $request->get('contrasena');
 
-        $eventos->tituloevento = $request->get('tituloevento');
-        $eventos->juegotorneo = $request->get('juegotorneo');
-        $eventos->informaciontorneo = $request->get('informaciontorneo');
-        $eventos->discord = $request->get('discord');
-        $eventos->id = $request->get('id');
-        $eventos->eventofecha = $request->get('eventofecha');
-        $eventos->eventoimagen = $request->get('eventoimagen');
-        $eventos->save();
+        $usuario->save();
 
-        return json_encode($eventos);
+        return json_encode($usuario);
     }
 
     /**
@@ -96,19 +90,10 @@ class eventosController extends Controller
      */
     public function destroy($id)
     {
-        $eventos = eventos::findOrFail($id);
-        $eventos->delete();
+        $usuario = usuario2::findOrFail($id);
+        $usuario->delete();
 
-        return
-            response('Success Delete', 200)
+        return response('Success Delete', 200)
             ->header('Content-Type', 'text/plain');
-    }
-    public function confirmDelete($id)
-    {
-
-        $eventos = eventos::findOrFail($id);
-        return view('eventos.confirmDelete', [
-            'eventos' => $eventos,
-        ]);
     }
 }
